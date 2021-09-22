@@ -11,7 +11,9 @@ struct GameView: View {
                     ForEach(0..<9) { i in
                         ZStack {
                             GameSquareView(proxy: geometry)
-                            PlayerIndicator(systemImageName: viewModel.moves[i]?.indicator ?? "")
+                            if let indicator = viewModel.moves[i]?.indicator {
+                                PlayerIndicator(systemImageName: indicator)
+                            }
                         }
                         .onTapGesture {
                             viewModel.processPlayerMove(for: i)
